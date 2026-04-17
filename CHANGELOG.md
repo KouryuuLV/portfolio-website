@@ -9,6 +9,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- **IT-Themed Color Scheme**: Added cyberpunk/tech-inspired color palette
+  - Cyber blue (#00d4ff) and neon green (#00ff88) accent colors
+  - Electric purple (#8b5cf6) and terminal green (#00ff41) highlights
+  - Matrix green (#00ff88) and code orange (#ff6b35) accents
+  - Dark terminal (#0a0a0a) and code background (#1e1e1e) themes
+- **IT-Themed Background**: Subtle tech-inspired background with radial gradients
+  - Cyber blue and neon green gradient overlays
+  - Fixed background attachment for parallax effect
+  - Professional dark gradient base (slate-900 to slate-700)
+- **Enhanced Navigation**: Glassmorphism effect with backdrop blur
+  - Semi-transparent dark background with cyber blue borders
+  - Glowing hover effects on navigation links
+  - Gradient underline animations (cyber blue to neon green)
+- **Code Editor Styling**: Terminal-inspired code showcase
+  - Dark code background with cyber blue borders
+  - Matrix green active tab highlights
+  - Glowing shadows and hover effects
+- **Interactive Elements**: Cyberpunk hover effects throughout
+  - Glowing shadows on cards, buttons, and interactive elements
+  - Cyber blue and neon green accent borders
+  - Enhanced focus states with tech-inspired colors
+- **Modal Enhancements**: IT-themed modal overlays
+  - Dark background with subtle radial gradient effects
+  - Cyber blue accent lighting
 - Comprehensive project rules and guidelines documentation (`PROJECT_RULES.md`)
 - CHANGELOG.md for tracking all project changes
 - Accessibility testing tools (axe-core)
