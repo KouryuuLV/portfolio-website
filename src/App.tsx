@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Hero from './components/Hero';
 import Education from './components/Education';
 import FunFacts from './components/FunFacts';
 import CodeExamples from './components/CodeExamples';
+import Gallery from './components/Gallery';
+import LicenseModal from './components/LicenseModal';
 import ContactMe from './components/ContactMe';
 import './App.css';
 
 function App() {
+  const [isLicenseOpen, setIsLicenseOpen] = useState(false);
+
+  const imageLicenses = [
+    {
+      id: 'picsum',
+      source: 'Picsum Photos',
+      url: 'https://picsum.photos',
+      details:
+        'Placeholder images provided for demo and prototyping. Replace with final licensed assets for production use.'
+    }
+  ];
+
   return (
     <div className="app">
       {/* Skip to main content link for accessibility */}
@@ -30,12 +44,17 @@ function App() {
               </li>
               <li role="none">
                 <a href="#education" className="nav-link" role="menuitem">
-                  Education
+                  Life Timeline
                 </a>
               </li>
               <li role="none">
                 <a href="#code-examples" className="nav-link" role="menuitem">
                   Code
+                </a>
+              </li>
+              <li role="none">
+                <a href="#gallery" className="nav-link" role="menuitem">
+                  Gallery
                 </a>
               </li>
               <li role="none">
@@ -66,6 +85,10 @@ function App() {
           <CodeExamples />
         </section>
 
+        <section id="gallery" aria-labelledby="gallery-heading">
+          <Gallery />
+        </section>
+
         <section id="fun-facts" aria-labelledby="fun-facts-heading">
           <FunFacts />
         </section>
@@ -75,12 +98,26 @@ function App() {
         </section>
       </main>
 
+      <LicenseModal
+        isOpen={isLicenseOpen}
+        onClose={() => setIsLicenseOpen(false)}
+        licenses={imageLicenses}
+      />
+
       <footer className="footer" role="contentinfo">
         <div className="container">
           <p>
             &copy; 2024 My Portfolio. Built with React, TypeScript, and Vite.
           </p>
           <p>All rights reserved. Designed with ❤️ and code.</p>
+          <button
+            type="button"
+            className="footer-link"
+            onClick={() => setIsLicenseOpen(true)}
+            aria-label="Open image license information"
+          >
+            Image license information
+          </button>
         </div>
       </footer>
     </div>

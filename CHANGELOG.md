@@ -34,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Future development roadmap
   - Success metrics and maintenance guidelines
 - **UI Improvement**: Removed redundant email contact tile from contact section (email form now primary contact method)
+- Small portfolio gallery section with stock-style image cards and captions (placeholder visuals to be replaced later)
 
 ### Changed
 

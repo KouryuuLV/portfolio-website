@@ -6,11 +6,11 @@ const Hero: React.FC = () => {
       <div className="hero-content">
         <h1 id="hero-heading">Welcome to My Portfolio</h1>
         <p className="hero-subtitle">
-          Full Stack Developer | React & TypeScript Specialist
+          Full Stack Developer | Cloud, DevOps & Web Systems
         </p>
         <p className="hero-description">
-          Crafting beautiful, performant web experiences with modern
-          technologies and best practices.
+          Building secure, scalable IT experiences with modern web technology
+          and best practices.
         </p>
         <div className="hero-buttons">
           <a
