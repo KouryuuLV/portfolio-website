@@ -9,6 +9,8 @@ interface TimelinePeriod {
   type: 'education' | 'work' | 'personal';
   details: string;
   description: string;
+  highlights?: string[];
+  location?: string;
 }
 
 const Education: React.FC = () => {
@@ -20,8 +22,15 @@ const Education: React.FC = () => {
       startYear: 1987,
       endYear: 2000,
       type: 'personal',
+      location: 'Latvia',
       details: 'Childhood and early development',
-      description: 'Formative years and personal growth'
+      description: 'Formative years and personal growth',
+      highlights: [
+        'Born in Latvia during the Soviet era',
+        'Witnessed Latvia\'s independence transition (1990)',
+        'Developed early curiosity in science and nature',
+        'Started primary and secondary education'
+      ]
     },
     {
       id: 'high-school',
@@ -30,8 +39,15 @@ const Education: React.FC = () => {
       startYear: 2000,
       endYear: 2006,
       type: 'education',
+      location: 'Cesis, Latvia',
       details: 'Friendly Appeal Cesis State Gymnasium',
-      description: 'Secondary education and preparation for higher education'
+      description: 'Secondary education and preparation for higher education',
+      highlights: [
+        'Strong focus on mathematics and natural sciences',
+        'Participated in science olympiads and competitions',
+        'Developed leadership skills through student council',
+        'Excelled in biology and chemistry subjects'
+      ]
     },
     {
       id: 'university',
@@ -40,8 +56,15 @@ const Education: React.FC = () => {
       startYear: 2006,
       endYear: 2011,
       type: 'education',
+      location: 'Riga, Latvia',
       details: "Master's Degree in Molecular Biology/Microbiology",
-      description: 'Advanced studies at University of Latvia'
+      description: 'Advanced studies at University of Latvia',
+      highlights: [
+        'Specialized in molecular biology and microbiology',
+        'Completed research projects on bacterial genetics',
+        'Developed analytical and laboratory skills',
+        'Master\'s thesis focused on microbial analysis'
+      ]
     },
     {
       id: 'transition',
@@ -50,8 +73,15 @@ const Education: React.FC = () => {
       startYear: 2011,
       endYear: 2016,
       type: 'personal',
+      location: 'Latvia/International',
       details: 'Professional development and career exploration',
-      description: 'Transitioning from biology to technology field'
+      description: 'Transitioning from biology to technology field',
+      highlights: [
+        'Explored various career paths post-university',
+        'Self-taught programming fundamentals',
+        'Discovered passion for technology and problem-solving',
+        'Prepared for formal IT education'
+      ]
     },
     {
       id: 'tech-school',
@@ -60,8 +90,15 @@ const Education: React.FC = () => {
       startYear: 2016,
       endYear: 2017,
       type: 'education',
+      location: 'Riga, Latvia',
       details: 'Riga State Technical School',
-      description: 'Professional training in computer programming'
+      description: 'Professional training in computer programming',
+      highlights: [
+        'Formal training in programming languages',
+        'Learned web development fundamentals',
+        'Studied database design and management',
+        'Built first professional projects'
+      ]
     },
     {
       id: 'early-career',
@@ -70,8 +107,15 @@ const Education: React.FC = () => {
       startYear: 2017,
       endYear: 2020,
       type: 'work',
+      location: 'Various',
       details: 'Technology industry experience',
-      description: 'Building foundational IT skills and experience'
+      description: 'Building foundational IT skills and experience',
+      highlights: [
+        'Started as junior developer at tech companies',
+        'Worked with various programming languages and frameworks',
+        'Gained experience with cloud technologies',
+        'Built portfolio of professional projects'
+      ]
     },
     {
       id: 'current-work',
@@ -80,8 +124,15 @@ const Education: React.FC = () => {
       startYear: 2020,
       endYear: 2026,
       type: 'work',
+      location: 'Remote/Global',
       details: 'Freelance IT Consultant & Full Stack Developer',
-      description: 'Modern web applications, cloud integration, and deployment automation'
+      description: 'Modern web applications, cloud integration, and deployment automation',
+      highlights: [
+        'Built numerous full-stack web applications',
+        'Specialized in React, TypeScript, and Node.js',
+        'Implemented Azure cloud solutions for clients',
+        'Developed CI/CD pipelines and DevOps practices'
+      ]
     }
   ];
 
@@ -172,10 +223,14 @@ const Education: React.FC = () => {
           </div>
         </div>
 
-        {/* Detailed Timeline Cards */}
-        <div className="timeline-details">
-          {timelineData.map((period) => (
-            <div key={period.id} className="timeline-card" id={period.id}>
+        {/* Vertical Timeline with Alternating Cards */}
+        <div className="vertical-timeline">
+          {timelineData.map((period, index) => (
+            <div 
+              key={period.id} 
+              className={`timeline-card vertical-card ${index % 2 === 0 ? 'left' : 'right'}`} 
+              id={period.id}
+            >
               <div className="timeline-card-header">
                 <div className="period-indicator" style={{ backgroundColor: getPeriodColor(period.type) }}></div>
                 <div className="period-info">
@@ -185,7 +240,18 @@ const Education: React.FC = () => {
               </div>
               <div className="timeline-card-content">
                 <p className="period-details">{period.details}</p>
+                {period.location && <p className="period-location">📍 {period.location}</p>}
                 <p className="period-description">{period.description}</p>
+                {period.highlights && period.highlights.length > 0 && (
+                  <div className="period-highlights">
+                    <h4>Key Highlights</h4>
+                    <ul>
+                      {period.highlights.map((highlight, i) => (
+                        <li key={i}>{highlight}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
           ))}

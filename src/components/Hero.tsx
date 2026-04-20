@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Hero: React.FC = () => {
+  const [hoveredButton, setHoveredButton] = useState<string | null>(null);
+
   return (
     <section className="hero-section" aria-labelledby="hero-heading">
       <div className="hero-content">
@@ -13,26 +15,41 @@ const Hero: React.FC = () => {
           and best practices.
         </p>
         <div className="hero-buttons">
-          <a
-            href="#contact"
-            className="btn btn-primary"
-            aria-describedby="contact-description"
+          <div 
+            className="btn-wrapper"
+            onMouseEnter={() => setHoveredButton('contact')}
+            onMouseLeave={() => setHoveredButton(null)}
           >
-            Get In Touch
-          </a>
-          <span id="contact-description" className="sr-only">
-            Navigate to the contact section to get in touch
-          </span>
-          <a
-            href="#code-examples"
-            className="btn btn-secondary"
-            aria-describedby="work-description"
+            <a
+              href="#contact"
+              className="btn btn-primary"
+            >
+              Get In Touch
+            </a>
+            {hoveredButton === 'contact' && (
+              <div className="btn-tooltip" role="tooltip">
+                Navigate to the contact section to get in touch
+              </div>
+            )}
+          </div>
+
+          <div 
+            className="btn-wrapper"
+            onMouseEnter={() => setHoveredButton('work')}
+            onMouseLeave={() => setHoveredButton(null)}
           >
-            See My Work
-          </a>
-          <span id="work-description" className="sr-only">
-            Navigate to the code examples section to see my work
-          </span>
+            <a
+              href="#code-examples"
+              className="btn btn-secondary"
+            >
+              See My Work
+            </a>
+            {hoveredButton === 'work' && (
+              <div className="btn-tooltip" role="tooltip">
+                Navigate to the code examples section to see my work
+              </div>
+            )}
+          </div>
         </div>
       </div>
       <div className="hero-decoration" aria-hidden="true">
