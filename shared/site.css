@@ -104,7 +104,7 @@ a.btn {
   min-height: 520px;
   border-radius: 32px;
   overflow: visible;
-  perspective: 1400px;
+  perspective: 2000px;
   outline: none;
 }
 
@@ -143,29 +143,29 @@ a.btn {
 }
 
 .card-panel.current {
-  transform: translate(-50%, -50%) rotateY(0deg) translateZ(500px);
+  transform: translate(-50%, -50%) rotateY(0deg) translateZ(650px);
   opacity: 1;
   z-index: 4;
   pointer-events: auto;
 }
 
 .card-panel.next {
-  transform: translate(-50%, -50%) rotateY(40deg) translateZ(420px) scale(0.82);
-  opacity: 0.85;
+  transform: translate(-50%, -50%) rotateY(45deg) translateZ(520px) scale(0.78);
+  opacity: 0.8;
   z-index: 2;
   pointer-events: none;
 }
 
 .card-panel.prev {
-  transform: translate(-50%, -50%) rotateY(-40deg) translateZ(420px) scale(0.82);
-  opacity: 0.85;
+  transform: translate(-50%, -50%) rotateY(-45deg) translateZ(520px) scale(0.78);
+  opacity: 0.8;
   z-index: 2;
   pointer-events: none;
 }
 
 .card-panel.back {
-  transform: translate(-50%, -50%) rotateY(180deg) translateZ(150px) scale(0.7);
-  opacity: 0.45;
+  transform: translate(-50%, -50%) rotateY(180deg) translateZ(200px) scale(0.65);
+  opacity: 0.4;
   z-index: 1;
   pointer-events: none;
 }
