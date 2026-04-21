@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Hero from './components/Hero';
 import Education from './components/Education';
 import FunFacts from './components/FunFacts';
@@ -6,10 +6,12 @@ import CodeExamples from './components/CodeExamples';
 import Gallery from './components/Gallery';
 import LicenseModal from './components/LicenseModal';
 import ContactMe from './components/ContactMe';
+import { getDeploymentConfig } from './config/deployment';
 import './App.css';
 
 function App() {
   const [isLicenseOpen, setIsLicenseOpen] = useState(false);
+  const config = getDeploymentConfig();
 
   const imageLicenses = [
     {
@@ -37,6 +39,11 @@ function App() {
           <div className="nav-container">
             <h1 className="nav-logo">MyPortfolio</h1>
             <ul className="nav-menu" role="menubar">
+              <li role="none">
+                <a href={config.getHomeUrl()} className="nav-link" role="menuitem">
+                  People
+                </a>
+              </li>
               <li role="none">
                 <a href="#hero" className="nav-link" role="menuitem">
                   Home

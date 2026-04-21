@@ -1,5 +1,3 @@
-import React from 'react';
-
 interface TimelinePeriod {
   id: string;
   title: string;
@@ -174,7 +172,7 @@ const Education: React.FC = () => {
         {/* Horizontal Timeline */}
         <div className="timeline-container" role="navigation" aria-label="Life timeline navigation">
           <div className="timeline-bar">
-            {timelineData.map((period, index) => {
+            {timelineData.map((period) => {
               const width = getPeriodWidth(period.startYear, period.endYear);
               const color = getPeriodColor(period.type);
 
@@ -262,3 +260,4 @@ const Education: React.FC = () => {
 };
 
 export default Education;
+

@@ -1,5 +1,6 @@
 import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
+import { resolve } from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -8,9 +9,15 @@ export default defineConfig({
     port: 5173,
     open: true,
   },
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/test/setup.ts',
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        juris: resolve(__dirname, 'people/juris/index.html'),
+        jtemplate: resolve(__dirname, 'people/jtemplate/index.html'),
+        anna: resolve(__dirname, 'people/anna/index.html'),
+        marta: resolve(__dirname, 'people/marta/index.html'),
+      },
+    },
   },
 });

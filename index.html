@@ -6,14 +6,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Portfolio website of a Full Stack Developer specializing in React and TypeScript"
+      content="People portfolio landing page with separate profile cards for Juris and the next person"
     />
-    <meta name="author" content="Your Name" />
-    <meta name="theme-color" content="#2563eb" />
-    <title>My Portfolio - Full Stack Developer</title>
+    <meta name="author" content="Portfolio Team" />
+    <meta name="theme-color" content="#0f172a" />
+    <link rel="stylesheet" href="/shared/site.css" />
+    <title>People Portfolio | Select a Profile</title>
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <div class="page-shell">
+      <header class="hero-panel">
+        <p class="eyebrow">People Portfolio</p>
+        <h1>Choose a profile to explore</h1>
+        <p class="hero-copy">
+          Browse through the portfolio carousel. Each card shows a profile photo with overlay text, and you can rotate through the sample people using mouse wheel or controls.
+        </p>
+      </header>
+
+      <section class="carousel" aria-label="Profile carousel">
+        <div class="carousel-viewport" tabindex="0" aria-roledescription="carousel" aria-label="Profile cards">
+          <div class="carousel-track" data-index="0">
+            <article class="card-panel" aria-roledescription="slide" aria-label="Juris profile">
+              <div class="card-photo" style="background-image:url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80');"></div>
+              <div class="card-copy">
+                <span class="badge">Current Profile</span>
+                <h2>Juris Lukstins</h2>
+                <p>Explore the full portfolio with timeline, code examples, gallery, and contact sections.</p>
+                <a class="btn" href="/people/juris/">Open Juris</a>
+              </div>
+            </article>
+
+            <article class="card-panel" aria-roledescription="slide" aria-label="Jtemplate placeholder profile">
+              <div class="card-photo" style="background-image:url('https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=80');"></div>
+              <div class="card-copy">
+                <span class="badge badge-alt">Coming Soon</span>
+                <h2>Jtemplate</h2>
+                <p>Placeholder portfolio page for the next profile, ready for content expansion.</p>
+                <a class="btn btn-secondary" href="/people/jtemplate/">Open Template</a>
+              </div>
+            </article>
+
+            <article class="card-panel" aria-roledescription="slide" aria-label="Anna profile">
+              <div class="card-photo" style="background-image:url('https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=900&q=80');"></div>
+              <div class="card-copy">
+                <span class="badge">Sample Profile</span>
+                <h2>Anna Petrova</h2>
+                <p>Preview another live-ready profile with skills, project highlights, and design case studies.</p>
+                <a class="btn btn-secondary" href="/people/anna/">Open Anna</a>
+              </div>
+            </article>
+
+            <article class="card-panel" aria-roledescription="slide" aria-label="Marta profile">
+              <div class="card-photo" style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80');"></div>
+              <div class="card-copy">
+                <span class="badge">Sample Profile</span>
+                <h2>Marta Kovacs</h2>
+                <p>Another sample person page for the live portfolio launch with a polished profile layout.</p>
+                <a class="btn btn-secondary" href="/people/marta/">Open Marta</a>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="carousel-controls">
+          <button type="button" class="control-btn prev">Previous</button>
+          <button type="button" class="control-btn next">Next</button>
+        </div>
+
+        <p class="carousel-help">Spin with mouse wheel or use the buttons to rotate cards.</p>
+      </section>
+
+      <footer class="site-footer">
+        <p>Refactored structure for people-based portfolio pages.</p>
+      </footer>
+      <script>
+        const track = document.querySelector('.carousel-track');
+        const viewport = document.querySelector('.carousel-viewport');
+        const prevButton = document.querySelector('.control-btn.prev');
+        const nextButton = document.querySelector('.control-btn.next');
+        const totalSlides = document.querySelectorAll('.card-panel').length;
+        const stepAngle = 360 / totalSlides;
+        let currentIndex = 0;
+
+        const updateCarousel = (index) => {
+          currentIndex = (index + totalSlides) % totalSlides;
+          track.style.transform = `rotateY(${currentIndex * -stepAngle}deg)`;
+        };
+
+        const moveNext = () => updateCarousel(currentIndex + 1);
+        const movePrev = () => updateCarousel(currentIndex - 1);
+
+        updateCarousel(0);
+
+        viewport.addEventListener('wheel', (event) => {
+          event.preventDefault();
+          if (event.deltaY > 0) {
+            moveNext();
+          } else if (event.deltaY < 0) {
+            movePrev();
+          }
+        }, { passive: false });
+
+        prevButton.addEventListener('click', movePrev);
+        nextButton.addEventListener('click', moveNext);
+      </script>
+    </div>
   </body>
 </html>

@@ -1,0 +1,36 @@
+name = "portfolio-website"
+main = "dist/worker.js"
+compatibility_date = "2024-04-21"
+type = "javascript"
+
+# Routes configuration for subdomains
+routes = [
+  { pattern = "juris.lukstins.eu/*", zone_name = "lukstins.eu" },
+  { pattern = "jtemplate.lukstins.eu/*", zone_name = "lukstins.eu" },
+  { pattern = "anna.lukstins.eu/*", zone_name = "lukstins.eu" },
+  { pattern = "marta.lukstins.eu/*", zone_name = "lukstins.eu" },
+  { pattern = "lukstins.eu/*", zone_name = "lukstins.eu" }
+]
+
+# Build configuration
+build = { command = "npm run build:worker" }
+
+# KV namespace for routing metadata (optional)
+[[kv_namespaces]]
+binding = "ROUTING"
+id = "your_kv_namespace_id_here"
+
+# Environment-specific configurations
+[env.production]
+routes = [
+  { pattern = "juris.lukstins.eu/*", zone_name = "lukstins.eu" },
+  { pattern = "jtemplate.lukstins.eu/*", zone_name = "lukstins.eu" },
+  { pattern = "anna.lukstins.eu/*", zone_name = "lukstins.eu" },
+  { pattern = "marta.lukstins.eu/*", zone_name = "lukstins.eu" },
+  { pattern = "lukstins.eu/*", zone_name = "lukstins.eu" }
+]
+
+[env.staging]
+routes = [
+  { pattern = "staging.lukstins.eu/*", zone_name = "lukstins.eu" }
+]
