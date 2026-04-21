@@ -16,6 +16,46 @@ body {
   background: radial-gradient(ellipse at top, rgba(56, 189, 248, 0.16), transparent 40%),
     linear-gradient(180deg, #060b16 0%, #0b1120 100%);
   color: #e2e8f0;
+  .karlis{
+height: 100%;
+margin: 0px;
+padding: 0px;
+  }
+}
+
+#container {
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+
+#about-text {
+  color: black;
+  font-family: sans-serif;
+}
+
+#full-page {
+  min-height: 100%;
+  color: #dedede;
+  background: #FFF url(backy.png) no-repeat;
+  background-position: top center;
+  background-size: cover;
+  display: flex;
+  text-align: center;
+}
+
+div#page-end-color {
+  border-top: 5px solid #FFF;
+  clear: both;
+  height: 10px;
+  background: url(rainbow.svg) repeat-x top left;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 -3px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  margin-top: -15px;
+}
+#container {
+  margin: auto auto;
+  font-family: Helvetica;
 }
 
 img {

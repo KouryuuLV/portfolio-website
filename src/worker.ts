@@ -6,7 +6,7 @@
  * lukstins.eu → /dist/index.html (main carousel)
  */
 
-const PEOPLE = ['juris', 'jtemplate', 'anna', 'marta'];
+const PEOPLE = ['juris', 'jurisseniors', 'karlis', 'valdis', 'peteris'];
 
 export default {
   async fetch(request: Request): Promise<Response> {
