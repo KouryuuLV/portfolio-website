@@ -18,7 +18,7 @@ build = { command = "npm run build:worker" }
 # KV namespace for routing metadata (optional)
 [[kv_namespaces]]
 binding = "ROUTING"
-id = "your_kv_namespace_id_here"
+id = "lukstins"
 
 # Environment-specific configurations
 [env.production]
