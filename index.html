@@ -80,17 +80,29 @@
         <p>Refactored structure for people-based portfolio pages.</p>
       </footer>
       <script>
-        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(document.querySelectorAll('.card-panel'));
         const viewport = document.querySelector('.carousel-viewport');
         const prevButton = document.querySelector('.control-btn.prev');
         const nextButton = document.querySelector('.control-btn.next');
-        const totalSlides = document.querySelectorAll('.card-panel').length;
-        const stepAngle = 360 / totalSlides;
+        const totalSlides = slides.length;
         let currentIndex = 0;
 
+        const normalizeIndex = (index) => ((index % totalSlides) + totalSlides) % totalSlides;
+
         const updateCarousel = (index) => {
-          currentIndex = index;
-          track.style.transform = `rotateY(${currentIndex * -stepAngle}deg)`;
+          currentIndex = normalizeIndex(index);
+          slides.forEach((slide, slideIndex) => {
+            slide.classList.remove('current', 'prev', 'next', 'back');
+            if (slideIndex === currentIndex) {
+              slide.classList.add('current');
+            } else if (slideIndex === normalizeIndex(currentIndex - 1)) {
+              slide.classList.add('prev');
+            } else if (slideIndex === normalizeIndex(currentIndex + 1)) {
+              slide.classList.add('next');
+            } else {
+              slide.classList.add('back');
+            }
+          });
         };
 
         const moveNext = () => updateCarousel(currentIndex + 1);

@@ -113,7 +113,6 @@ a.btn {
   min-height: 520px;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 0.9s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 .card-panel {
@@ -131,6 +130,7 @@ a.btn {
   backface-visibility: hidden;
   overflow: hidden;
   box-shadow: 0 32px 120px rgba(0, 0, 0, 0.35);
+  transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), opacity 0.6s ease;
 }
 
 .card-panel::before {
@@ -139,22 +139,35 @@ a.btn {
   inset: 0;
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.1), rgba(15, 23, 42, 0.88) 55%);
   z-index: 1;
+  pointer-events: none;
 }
 
-.card-panel:nth-child(1) {
-  transform: translate(-50%, -50%) rotateY(0deg) translateZ(320px);
+.card-panel.current {
+  transform: translate(-50%, -50%) rotateY(0deg) translateZ(500px);
+  opacity: 1;
+  z-index: 4;
+  pointer-events: auto;
 }
 
-.card-panel:nth-child(2) {
-  transform: translate(-50%, -50%) rotateY(90deg) translateZ(320px);
+.card-panel.next {
+  transform: translate(-50%, -50%) rotateY(40deg) translateZ(420px) scale(0.82);
+  opacity: 0.85;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.card-panel:nth-child(3) {
-  transform: translate(-50%, -50%) rotateY(180deg) translateZ(320px);
+.card-panel.prev {
+  transform: translate(-50%, -50%) rotateY(-40deg) translateZ(420px) scale(0.82);
+  opacity: 0.85;
+  z-index: 2;
+  pointer-events: none;
 }
 
-.card-panel:nth-child(4) {
-  transform: translate(-50%, -50%) rotateY(270deg) translateZ(320px);
+.card-panel.back {
+  transform: translate(-50%, -50%) rotateY(180deg) translateZ(150px) scale(0.7);
+  opacity: 0.45;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .card-photo {
