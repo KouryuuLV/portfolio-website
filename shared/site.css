@@ -118,11 +118,15 @@ a.btn {
 
 .card-panel {
   position: absolute;
-  inset: 0;
+  left: 50%;
+  top: 50%;
+  width: min(420px, 100%);
+  aspect-ratio: 3 / 4;
   display: grid;
   align-items: end;
   padding: 0;
   border-radius: 32px;
+  transform-origin: center center;
   transform-style: preserve-3d;
   backface-visibility: hidden;
   overflow: hidden;
@@ -138,19 +142,19 @@ a.btn {
 }
 
 .card-panel:nth-child(1) {
-  transform: rotateY(0deg) translateZ(320px);
+  transform: translate(-50%, -50%) rotateY(0deg) translateZ(320px);
 }
 
 .card-panel:nth-child(2) {
-  transform: rotateY(90deg) translateZ(320px);
+  transform: translate(-50%, -50%) rotateY(90deg) translateZ(320px);
 }
 
 .card-panel:nth-child(3) {
-  transform: rotateY(180deg) translateZ(320px);
+  transform: translate(-50%, -50%) rotateY(180deg) translateZ(320px);
 }
 
 .card-panel:nth-child(4) {
-  transform: rotateY(270deg) translateZ(320px);
+  transform: translate(-50%, -50%) rotateY(270deg) translateZ(320px);
 }
 
 .card-photo {
@@ -165,9 +169,9 @@ a.btn {
 .card-copy {
   position: relative;
   z-index: 2;
-  width: min(540px, 100%);
-  margin: 0 2rem 2rem;
-  padding: 1.75rem;
+  width: 100%;
+  margin: 0 1.5rem 1.5rem;
+  padding: 1.5rem;
   display: grid;
   gap: 1rem;
 }

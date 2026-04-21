@@ -9,7 +9,7 @@
 }
 
 :root {
-  /* Primary IT-themed colors */
+  /* Primar  /* Primary IT-themed colors */
   --primary-color: #2563eb;
   --secondary-color: #64748b;
   --accent-color: #f59e0b;
@@ -458,6 +458,7 @@ section:first-of-type {
    Education Section (Life Timeline)
    ============================================ */
 
+
 .education-section {
   padding: var(--spacing-xl) var(--spacing-lg);
   background: linear-gradient(180deg, rgba(15, 23, 42, 0.02) 0%, rgba(0, 212, 255, 0.05) 100%);
@@ -663,7 +664,6 @@ section:first-of-type {
   margin: 0 auto;
 }
 
-/* Center line */
 .vertical-timeline::before {
   content: '';
   position: absolute;
@@ -1440,16 +1440,15 @@ section:first-of-type {
 
   /* Vertical timeline mobile */
   .vertical-timeline::before {
-    left: 0;
+    left: 8px;
   }
 
   .vertical-card {
     width: 100%;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    margin: 0 0 var(--spacing-lg) 0;
     text-align: left !important;
     padding: var(--spacing-md);
-    padding-left: var(--spacing-xl);
+    padding-left: 40px;
   }
 
   .vertical-card::before {
@@ -1605,12 +1604,3 @@ section:first-of-type {
 }
 
 /* Reduced motion preferences */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
