@@ -121,6 +121,16 @@
 
         prevButton.addEventListener('click', movePrev);
         nextButton.addEventListener('click', moveNext);
+
+        document.addEventListener('keydown', (event) => {
+          if (event.key === 'ArrowLeft') {
+            event.preventDefault();
+            movePrev();
+          } else if (event.key === 'ArrowRight') {
+            event.preventDefault();
+            moveNext();
+          }
+        });
       </script>
     </div>
   </body>
