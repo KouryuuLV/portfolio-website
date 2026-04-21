@@ -89,7 +89,7 @@
         let currentIndex = 0;
 
         const updateCarousel = (index) => {
-          currentIndex = (index + totalSlides) % totalSlides;
+          currentIndex = index;
           track.style.transform = `rotateY(${currentIndex * -stepAngle}deg)`;
         };
 
