@@ -13,9 +13,10 @@ export default defineConfig({
             input: {
                 main: resolve(__dirname, 'index.html'),
                 juris: resolve(__dirname, 'people/juris/index.html'),
-                jtemplate: resolve(__dirname, 'people/jtemplate/index.html'),
-                anna: resolve(__dirname, 'people/anna/index.html'),
-                marta: resolve(__dirname, 'people/marta/index.html'),
+                jurisseniors: resolve(__dirname, 'people/jurisseniors/index.html'),
+                karlis: resolve(__dirname, 'people/karlis/index.html'),
+                valdis: resolve(__dirname, 'people/valdis/index.html'),
+                peteris: resolve(__dirname, 'people/peteris/index.html'),
             },
         },
     },
