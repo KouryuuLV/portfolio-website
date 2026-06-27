@@ -3,7 +3,7 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { vi } from 'vitest';
-import ContactMe from './ContactMe';
+import ContactMe from './sections/ContactMe';
 
 // Mock EmailJS
 vi.mock('@emailjs/browser', () => ({

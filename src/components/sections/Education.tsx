@@ -1,4 +1,4 @@
-import profileData from '../data/profile.json';
+import profileData from '../../data/profile.json';
 
 interface TimelinePeriod {
   id: string;

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import profileData from '../data/profile.json';
+import profileData from '../../data/profile.json';
 
 interface FormData {
   name: string;

@@ -1,7 +1,7 @@
 /// <reference types="vitest/globals" />
 
 import { render, screen } from '@testing-library/react';
-import FunFacts from './FunFacts';
+import FunFacts from './sections/FunFacts';
 
 describe('FunFacts', () => {
   it('renders fun facts section', () => {

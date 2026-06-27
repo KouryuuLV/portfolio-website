@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Hero from './Hero';
+import Hero from './sections/Hero';
 
 describe('Hero', () => {
   it('renders hero section with correct heading', () => {

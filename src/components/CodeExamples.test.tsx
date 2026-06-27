@@ -1,5 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import CodeExamples from './CodeExamples';
+import CodeExamples from './sections/CodeExamples';
 
 describe('CodeExamples', () => {
   it('renders code examples section', () => {

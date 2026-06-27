@@ -1,5 +1,5 @@
 import React from 'react';
-import profileData from '../data/profile.json';
+import profileData from '../../data/profile.json';
 
 const Gallery: React.FC = () => {
   const images = profileData.gallery.items;

@@ -1,5 +1,5 @@
 import React from 'react';
-import profileData from '../data/profile.json';
+import profileData from '../../data/profile.json';
 
 const FunFacts: React.FC = () => {
   const facts = profileData.funFacts.items;

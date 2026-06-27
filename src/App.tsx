@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import Hero from './components/Hero';
-import Education from './components/Education';
-import FunFacts from './components/FunFacts';
-import CodeExamples from './components/CodeExamples';
-import Gallery from './components/Gallery';
-import LicenseModal from './components/LicenseModal';
-import ContactMe from './components/ContactMe';
+import Hero from './components/sections/Hero';
+import Education from './components/sections/Education';
+import FunFacts from './components/sections/FunFacts';
+import CodeExamples from './components/sections/CodeExamples';
+import Gallery from './components/sections/Gallery';
+import LicenseModal from './components/ui/LicenseModal';
+import ContactMe from './components/sections/ContactMe';
 import { getDeploymentConfig } from './config/deployment';
-import './App.css';
+import './styles/app.css';
 
 function App() {
   const [isLicenseOpen, setIsLicenseOpen] = useState(false);

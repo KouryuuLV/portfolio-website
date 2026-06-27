@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import profileData from '../data/profile.json';
+import profileData from '../../data/profile.json';
 
 const Hero: React.FC = () => {
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);

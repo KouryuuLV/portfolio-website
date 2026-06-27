@@ -1,7 +1,7 @@
 /// <reference types="vitest/globals" />
 
 import { render, screen, fireEvent } from '@testing-library/react';
-import Education from './Education';
+import Education from './sections/Education';
 
 describe('Education', () => {
   it('renders education section with timeline', () => {

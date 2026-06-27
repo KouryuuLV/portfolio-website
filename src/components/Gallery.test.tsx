@@ -1,7 +1,7 @@
 /// <reference types="vitest/globals" />
 
 import { render, screen } from '@testing-library/react';
-import Gallery from './Gallery';
+import Gallery from './sections/Gallery';
 
 describe('Gallery', () => {
   it('renders gallery section', () => {
