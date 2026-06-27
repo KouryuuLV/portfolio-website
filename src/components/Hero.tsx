@@ -1,30 +1,24 @@
 import React, { useState } from 'react';
+import profileData from '../data/profile.json';
 
 const Hero: React.FC = () => {
   const [hoveredButton, setHoveredButton] = useState<string | null>(null);
+  const hero = profileData.hero;
 
   return (
     <section className="hero-section" aria-labelledby="hero-heading">
       <div className="hero-content">
-        <h1 id="hero-heading">Welcome to My Portfolio</h1>
-        <p className="hero-subtitle">
-          Full Stack Developer | Cloud, DevOps & Web Systems
-        </p>
-        <p className="hero-description">
-          Building secure, scalable IT experiences with modern web technology
-          and best practices.
-        </p>
+        <h1 id="hero-heading">{hero.headline}</h1>
+        <p className="hero-subtitle">{hero.subtitle}</p>
+        <p className="hero-description">{hero.description}</p>
         <div className="hero-buttons">
-          <div 
+          <div
             className="btn-wrapper"
             onMouseEnter={() => setHoveredButton('contact')}
             onMouseLeave={() => setHoveredButton(null)}
           >
-            <a
-              href="#contact"
-              className="btn btn-primary"
-            >
-              Get In Touch
+            <a href={hero.primaryCta.href} className="btn btn-primary">
+              {hero.primaryCta.label}
             </a>
             {hoveredButton === 'contact' && (
               <div className="btn-tooltip" role="tooltip">
@@ -33,16 +27,13 @@ const Hero: React.FC = () => {
             )}
           </div>
 
-          <div 
+          <div
             className="btn-wrapper"
             onMouseEnter={() => setHoveredButton('work')}
             onMouseLeave={() => setHoveredButton(null)}
           >
-            <a
-              href="#code-examples"
-              className="btn btn-secondary"
-            >
-              See My Work
+            <a href={hero.secondaryCta.href} className="btn btn-secondary">
+              {hero.secondaryCta.label}
             </a>
             {hoveredButton === 'work' && (
               <div className="btn-tooltip" role="tooltip">

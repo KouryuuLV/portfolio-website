@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import emailjs from '@emailjs/browser';
+import profileData from '../data/profile.json';
 
 interface FormData {
   name: string;
@@ -17,6 +18,7 @@ interface FormErrors {
 
 const ContactMe: React.FC = () => {
   const formRef = useRef<HTMLFormElement>(null);
+  const contactContent = profileData.contact;
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -111,16 +113,13 @@ const ContactMe: React.FC = () => {
   return (
     <section className="contact-section" aria-labelledby="contact-heading">
       <div className="container">
-        <h2 id="contact-heading">Get In Touch</h2>
-        <p className="section-subtitle">
-          I'd love to hear from you. Send me a message or connect with me on
-          social media.
-        </p>
+        <h2 id="contact-heading">{contactContent.heading}</h2>
+        <p className="section-subtitle">{contactContent.subtitle}</p>
 
         <div className="contact-content">
           {/* Contact Form */}
           <div className="contact-form-container">
-            <h3>Send a Message</h3>
+            <h3>{contactContent.formTitle}</h3>
             <form
               ref={formRef}
               onSubmit={handleSubmit}

@@ -1,0 +1,275 @@
+{
+  "name": "Juris",
+  "hero": {
+    "headline": "Welcome to My Portfolio",
+    "subtitle": "Full Stack Developer | Cloud, DevOps & Web Systems",
+    "description": "Building secure, scalable IT experiences with modern web technology and best practices.",
+    "primaryCta": {
+      "label": "Get In Touch",
+      "href": "#contact"
+    },
+    "secondaryCta": {
+      "label": "See My Work",
+      "href": "#code-examples"
+    }
+  },
+  "education": {
+    "heading": "Life Timeline",
+    "subtitle": "My journey from 1987 to present: education, career, and personal growth",
+    "items": [
+      {
+        "id": "birth-childhood",
+        "title": "Early Years",
+        "period": "1987 – 2000",
+        "startYear": 1987,
+        "endYear": 2000,
+        "type": "personal",
+        "location": "Latvia",
+        "details": "Childhood and early development",
+        "description": "Formative years and personal growth",
+        "highlights": [
+          "Born in Latvia during the Soviet era",
+          "Witnessed Latvia's independence transition (1990)",
+          "Developed early curiosity in science and nature",
+          "Started primary and secondary education"
+        ]
+      },
+      {
+        "id": "high-school",
+        "title": "High School",
+        "period": "2000 – 2006",
+        "startYear": 2000,
+        "endYear": 2006,
+        "type": "education",
+        "location": "Cesis, Latvia",
+        "details": "Friendly Appeal Cesis State Gymnasium",
+        "description": "Secondary education and preparation for higher education",
+        "highlights": [
+          "Strong focus on mathematics and natural sciences",
+          "Participated in science olympiads and competitions",
+          "Developed leadership skills through student council",
+          "Excelled in biology and chemistry subjects"
+        ]
+      },
+      {
+        "id": "university",
+        "title": "University",
+        "period": "2006 – 2011",
+        "startYear": 2006,
+        "endYear": 2011,
+        "type": "education",
+        "location": "Riga, Latvia",
+        "details": "Master's Degree in Molecular Biology/Microbiology",
+        "description": "Advanced studies at University of Latvia",
+        "highlights": [
+          "Specialized in molecular biology and microbiology",
+          "Completed research projects on bacterial genetics",
+          "Developed analytical and laboratory skills",
+          "Master's thesis focused on microbial analysis"
+        ]
+      },
+      {
+        "id": "transition",
+        "title": "Career Transition",
+        "period": "2011 – 2016",
+        "startYear": 2011,
+        "endYear": 2016,
+        "type": "personal",
+        "location": "Latvia/International",
+        "details": "Professional development and career exploration",
+        "description": "Transitioning from biology to technology field",
+        "highlights": [
+          "Explored various career paths post-university",
+          "Self-taught programming fundamentals",
+          "Discovered passion for technology and problem-solving",
+          "Prepared for formal IT education"
+        ]
+      },
+      {
+        "id": "tech-school",
+        "title": "Technical School",
+        "period": "2016 – 2017",
+        "startYear": 2016,
+        "endYear": 2017,
+        "type": "education",
+        "location": "Riga, Latvia",
+        "details": "Riga State Technical School",
+        "description": "Professional training in computer programming",
+        "highlights": [
+          "Formal training in programming languages",
+          "Learned web development fundamentals",
+          "Studied database design and management",
+          "Built first professional projects"
+        ]
+      },
+      {
+        "id": "early-career",
+        "title": "Early Career",
+        "period": "2017 – 2020",
+        "startYear": 2017,
+        "endYear": 2020,
+        "type": "work",
+        "location": "Various",
+        "details": "Technology industry experience",
+        "description": "Building foundational IT skills and experience",
+        "highlights": [
+          "Started as junior developer at tech companies",
+          "Worked with various programming languages and frameworks",
+          "Gained experience with cloud technologies",
+          "Built portfolio of professional projects"
+        ]
+      },
+      {
+        "id": "current-work",
+        "title": "Current Work",
+        "period": "2020 – Present",
+        "startYear": 2020,
+        "endYear": 2026,
+        "type": "work",
+        "location": "Remote/Global",
+        "details": "Freelance IT Consultant & Full Stack Developer",
+        "description": "Modern web applications, cloud integration, and deployment automation",
+        "highlights": [
+          "Built numerous full-stack web applications",
+          "Specialized in React, TypeScript, and Node.js",
+          "Implemented Azure cloud solutions for clients",
+          "Developed CI/CD pipelines and DevOps practices"
+        ]
+      }
+    ]
+  },
+  "codeExamples": {
+    "heading": "Code Examples & Snippets",
+    "subtitle": "Real-world patterns and solutions I use daily",
+    "items": [
+      {
+        "id": 1,
+        "title": "Custom React Hook - useLocalStorage",
+        "language": "typescript",
+        "description": "A reusable hook for syncing state with browser localStorage, with TypeScript support.",
+        "tags": ["React", "TypeScript", "Hooks", "Browser API"],
+        "projectInfo": "Project Size: Small | Intensity: Medium",
+        "code": "import { useState, useEffect } from 'react';\n\nfunction useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {\n  const [storedValue, setStoredValue] = useState<T>(() => {\n    try {\n      const item = window.localStorage.getItem(key);\n      return item ? JSON.parse(item) : initialValue;\n    } catch (error) {\n      console.error(error);\n      return initialValue;\n    }\n  });\n\n  const setValue = (value: T) => {\n    try {\n      setStoredValue(value);\n      window.localStorage.setItem(key, JSON.stringify(value));\n    } catch (error) {\n      console.error(error);\n    }\n  };\n\n  return [storedValue, setValue];\n}\n"
+      },
+      {
+        "id": 2,
+        "title": "API Data Fetching with Error Handling",
+        "language": "typescript",
+        "description": "A production-ready pattern for fetching API data with loading, error, and success states.",
+        "tags": ["TypeScript", "API", "Error Handling", "Async/Await"],
+        "projectInfo": "Project Size: Medium | Intensity: High",
+        "code": "interface ApiState<T> {\ndata: T | null;\nisLoading: boolean;\nerror: string | null;\n}\n\nasync function fetchData<T>(url: string): Promise<T> {\n  const response = await fetch(url);\n  if (!response.ok) {\n    throw new Error(`API error: ${response.status}`);\n  }\n  return response.json();\n}\n"
+      },
+      {
+        "id": 3,
+        "title": "Type-Safe Form Handling",
+        "language": "typescript",
+        "description": "Strongly-typed form state management with validation in React.",
+        "tags": ["React", "TypeScript", "Forms", "Validation"],
+        "projectInfo": "Project Size: Medium | Intensity: Medium",
+        "code": "interface FormData {\n  email: string;\n  password: string;\n  rememberMe: boolean;\n}\n"
+      }
+    ]
+  },
+  "gallery": {
+    "heading": "IT Portfolio Gallery",
+    "subtitle": "A technology-focused showcase of modern interfaces and IT system visuals.",
+    "items": [
+      {
+        "id": 1,
+        "src": "https://picsum.photos/seed/tech-dashboard/800/600",
+        "alt": "IT dashboard with data visualizations",
+        "title": "IT Dashboard",
+        "description": "Visual metrics and infrastructure analytics for modern operations.",
+        "source": "Picsum Photos",
+        "sourceUrl": "https://picsum.photos"
+      },
+      {
+        "id": 2,
+        "src": "https://picsum.photos/seed/coding-setup/800/600",
+        "alt": "Code editor with working session open",
+        "title": "Developer Workspace",
+        "description": "Clean workspaces designed to support productivity and clarity.",
+        "source": "Picsum Photos",
+        "sourceUrl": "https://picsum.photos"
+      },
+      {
+        "id": 3,
+        "src": "https://picsum.photos/seed/cloud-architecture/800/600",
+        "alt": "Cloud architecture diagram on a screen",
+        "title": "Cloud Systems",
+        "description": "Scalable cloud architecture and deployment pipeline visuals.",
+        "source": "Picsum Photos",
+        "sourceUrl": "https://picsum.photos"
+      },
+      {
+        "id": 4,
+        "src": "https://picsum.photos/seed/cybersecurity/800/600",
+        "alt": "Cybersecurity monitoring and alert screens",
+        "title": "Security Monitoring",
+        "description": "Proactive protection and monitoring for critical IT systems.",
+        "source": "Picsum Photos",
+        "sourceUrl": "https://picsum.photos"
+      },
+      {
+        "id": 5,
+        "src": "https://picsum.photos/seed/server-rack/800/600",
+        "alt": "Server rack and network equipment",
+        "title": "Infrastructure",
+        "description": "Reliable infrastructure engineering for uptime and availability.",
+        "source": "Picsum Photos",
+        "sourceUrl": "https://picsum.photos"
+      },
+      {
+        "id": 6,
+        "src": "https://picsum.photos/seed/devops/800/600",
+        "alt": "DevOps workflow with automation tools",
+        "title": "DevOps Workflow",
+        "description": "Automation and continuous delivery to support fast release cycles.",
+        "source": "Picsum Photos",
+        "sourceUrl": "https://picsum.photos"
+      }
+    ]
+  },
+  "funFacts": {
+    "heading": "Fun Facts About Me",
+    "subtitle": "Beyond the code – things that make me, me",
+    "items": [
+      {
+        "emoji": "☕",
+        "title": "Coffee Enthusiast",
+        "description": "I fuel my development with espresso and curiosity. Always exploring new coffee blends while exploring new code patterns."
+      },
+      {
+        "emoji": "🎮",
+        "title": "Casual Gamer",
+        "description": "When not coding, you can find me playing indie games. I love puzzle-solving games that challenge my problem-solving skills."
+      },
+      {
+        "emoji": "🌍",
+        "title": "Travel Bug",
+        "description": "I love exploring new cities and cultures. Every trip teaches me something new about software, technology, and human interaction."
+      },
+      {
+        "emoji": "📚",
+        "title": "Lifelong Learner",
+        "description": "I spend weekends reading tech blogs, listening to podcasts, and tinkering with side projects to stay current."
+      },
+      {
+        "emoji": "🎵",
+        "title": "Music Lover",
+        "description": "Code sounds better with a good soundtrack. I have playlists for debugging, learning, and deep work sessions."
+      },
+      {
+        "emoji": "🚀",
+        "title": "Innovation Seeker",
+        "description": "Always looking for new technologies and better ways to build. Open source contributions and hackathons are my playground."
+      }
+    ]
+  },
+  "contact": {
+    "heading": "Get In Touch",
+    "subtitle": "I'd love to hear from you. Send me a message or connect with me on social media.",
+    "formTitle": "Send a Message"
+  }
+}
