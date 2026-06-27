@@ -26,50 +26,10 @@
       <section class="carousel" aria-label="Profile carousel">
         <div class="carousel-viewport" tabindex="0" aria-roledescription="carousel" aria-label="Juris profile">
           <div class="carousel-track" data-index="0">
-            <article class="card-panel" aria-roledescription="slide" aria-label="Juris profile">
-              <div class="card-photo" style="background-image:url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80');"></div>
-              <div class="card-copy">
-                <h2>Juris Lukstiņš</h2>
-                <p>Explore the full portfolio with timeline, code examples, gallery, and contact sections.</p>
-                <a class="btn btn-secondary" href="/people/juris/">More about Juris</a>
-              </div>
-            </article>
-
-            <article class="card-panel" aria-roledescription="slide" aria-label="Karlis profile">
-              <div class="card-photo" style="background-image:url('https://media.licdn.com/dms/image/v2/D4D03AQHYU-q7Fhu9zQ/profile-displayphoto-shrink_400_400/B4DZp0ZU3SGwAg-/0/1762889388078?e=1778112000&v=beta&t=Tklh0-IaQolYM53RJRZdR9-Up2c1tvPS52SLS2_P9WY');"></div>
-              <div class="card-copy">
-                <h2>Kārlis Lukstiņš</h2>
-                <p>Father, husband, developer and all around a good person.</p>
-                <a class="btn btn-secondary" href="/people/karlis/">More about Kārlis</a>
-              </div>
-            </article>
-
-            <article class="card-panel" aria-roledescription="slide" aria-label="Juris Seniors profile">
-              <div class="card-photo" style="background-image:url('https://images.unsplash.com/photo-1544723795-3fb6469f5b39?auto=format&fit=crop&w=900&q=80');"></div>
-              <div class="card-copy">
-                <h2>Juris Lukstiņš Vecākais</h2>
-                <p>Preview another live-ready profile with skills, project highlights, and design case studies.</p>
-                <a class="btn btn-secondary" href="/people/jurisseniors/">More about Juris</a>
-              </div>
-            </article>
-
-            <article class="card-panel" aria-roledescription="slide" aria-label="Valdis profile">
-              <div class="card-photo" style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=900&q=80');"></div>
-              <div class="card-copy">
-                <h2>Valdis Lukstiņš</h2>
-                <p>Another sample person page for the live portfolio launch with a polished profile layout.</p>
-                <a class="btn btn-secondary" href="/people/valdis/">More about Valdis</a>
-              </div>
-            </article>
-            
-            <article class="card-panel" aria-roledescription="slide" aria-label="Peteris profile">
-              <div class="card-photo" style="background-image:url('https://pbs.twimg.com/profile_images/534623006929072128/yv3FVsYw.jpeg');"></div>
-              <div class="card-copy">
-                <h2>Pēteris Lukstiņš</h2>
-                <p>Another sample person page for the live portfolio launch with a polished profile layout.</p>
-                <a class="btn btn-secondary" href="/people/peteris/">More about Pēteris</a>
-              </div>
-            </article>
+            <div class="carousel-loading" id="carousel-loading" role="status" aria-live="polite" aria-label="Loading people">
+              <div class="spinner" aria-hidden="true"></div>
+              <p>Loading people…</p>
+            </div>
           </div>
         </div>
 
@@ -84,58 +44,84 @@
       <footer class="site-footer">
         <p>Refactored structure for people-based portfolio pages.</p>
       </footer>
-      <script>
-        const slides = Array.from(document.querySelectorAll('.card-panel'));
-        const viewport = document.querySelector('.carousel-viewport');
-        const prevButton = document.querySelector('.control-btn.prev');
-        const nextButton = document.querySelector('.control-btn.next');
-        const totalSlides = slides.length;
-        let currentIndex = 0;
+      <script type="module">
+        (async () => {
+          const track = document.querySelector('.carousel-track');
+          const viewport = document.querySelector('.carousel-viewport');
+          const prevButton = document.querySelector('.control-btn.prev');
+          const nextButton = document.querySelector('.control-btn.next');
+          const loading = document.getElementById('carousel-loading');
 
-        const normalizeIndex = (index) => ((index % totalSlides) + totalSlides) % totalSlides;
+          const people = await fetch('/src/data/people.json').then((response) => response.json());
 
-        const updateCarousel = (index) => {
-          currentIndex = normalizeIndex(index);
-          slides.forEach((slide, slideIndex) => {
-            slide.classList.remove('current', 'prev', 'next', 'back');
-            if (slideIndex === currentIndex) {
-              slide.classList.add('current');
-            } else if (slideIndex === normalizeIndex(currentIndex - 1)) {
-              slide.classList.add('prev');
-            } else if (slideIndex === normalizeIndex(currentIndex + 1)) {
-              slide.classList.add('next');
-            } else {
-              slide.classList.add('back');
+          const slides = people.map((person) => {
+            const article = document.createElement('article');
+            article.className = 'card-panel';
+            article.setAttribute('aria-roledescription', 'slide');
+            article.setAttribute('aria-label', `${person.name} profile`);
+            article.innerHTML = `
+              <div class="card-photo" style="background-image:url('${person.imageUrl || 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80'}');"></div>
+              <div class="card-copy">
+                <span class="badge">Featured profile</span>
+                <h2>${person.name}</h2>
+                <p>${person.summary}</p>
+                <a class="btn btn-secondary" href="${person.ctaHref}">${person.ctaLabel}</a>
+              </div>
+            `;
+            return article;
+          });
+
+          loading.remove();
+          slides.forEach((slide) => track.appendChild(slide));
+
+          const totalSlides = slides.length;
+          let currentIndex = 0;
+
+          const normalizeIndex = (index) => ((index % totalSlides) + totalSlides) % totalSlides;
+
+          const updateCarousel = (index) => {
+            currentIndex = normalizeIndex(index);
+            slides.forEach((slide, slideIndex) => {
+              slide.classList.remove('current', 'prev', 'next', 'back');
+              if (slideIndex === currentIndex) {
+                slide.classList.add('current');
+              } else if (slideIndex === normalizeIndex(currentIndex - 1)) {
+                slide.classList.add('prev');
+              } else if (slideIndex === normalizeIndex(currentIndex + 1)) {
+                slide.classList.add('next');
+              } else {
+                slide.classList.add('back');
+              }
+            });
+          };
+
+          const moveNext = () => updateCarousel(currentIndex + 1);
+          const movePrev = () => updateCarousel(currentIndex - 1);
+
+          updateCarousel(0);
+
+          viewport.addEventListener('wheel', (event) => {
+            event.preventDefault();
+            if (event.deltaY > 0) {
+              moveNext();
+            } else if (event.deltaY < 0) {
+              movePrev();
+            }
+          }, { passive: false });
+
+          prevButton.addEventListener('click', movePrev);
+          nextButton.addEventListener('click', moveNext);
+
+          document.addEventListener('keydown', (event) => {
+            if (event.key === 'ArrowLeft') {
+              event.preventDefault();
+              movePrev();
+            } else if (event.key === 'ArrowRight') {
+              event.preventDefault();
+              moveNext();
             }
           });
-        };
-
-        const moveNext = () => updateCarousel(currentIndex + 1);
-        const movePrev = () => updateCarousel(currentIndex - 1);
-
-        updateCarousel(0);
-
-        viewport.addEventListener('wheel', (event) => {
-          event.preventDefault();
-          if (event.deltaY > 0) {
-            moveNext();
-          } else if (event.deltaY < 0) {
-            movePrev();
-          }
-        }, { passive: false });
-
-        prevButton.addEventListener('click', movePrev);
-        nextButton.addEventListener('click', moveNext);
-
-        document.addEventListener('keydown', (event) => {
-          if (event.key === 'ArrowLeft') {
-            event.preventDefault();
-            movePrev();
-          } else if (event.key === 'ArrowRight') {
-            event.preventDefault();
-            moveNext();
-          }
-        });
+        })();
       </script>
     </div>
   </body>
