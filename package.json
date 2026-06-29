@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "build:worker": "npm run build && esbuild src/worker.ts --bundle --platform=neutral --format=esm --outfile=dist/worker.js",
-    "deploy:cloudflare": "npm run build:worker && wrangler publish",
+    "deploy:cloudflare": "npm run build:worker && wrangler deploy",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
